@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-In</title>
+    <style>
+        body{
+            height: 500px;
+            display: flex;
+
+        }
+        #container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+           
+            width: 25%;
+            margin: auto;
+            padding: 10px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            border-radius: 10px;
+        }
+        input{
+            height: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            border: 1px solid grey;
+        }
+        button{
+            cursor: pointer;
+        }
+        #lab{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <label for="">Email</label>
+        <input type="email" placeholder="Enter Email" id="email">
+        <label for="">Contact Number</label>
+        <input type="number" placeholder="Enter Your Contact Number" id="name">
+        <label for="">Password</label>
+        <input type="password" placeholder="Enter Password" id="password">
+        <label for="">Don't have an account</label>
+        <button>Sign up</button>
+        <label for="" id="lab">Have an account</label>
+    </div>
+    <P></P>
+</body>
+</html>
+<script>
+    document.querySelector("button").addEventListener("click",add);
+    var data = [];
+    var login = document.createElement("button");
+    login.setAttribute("class","btn2");
+        login.innerText="Log in";
+        
+        document.getElementById("container").append(login);
+        
+    function add(){
+        var obj = {
+            email:document.querySelector("#email").value,
+            contact:document.querySelector("#name").value,
+            password:document.querySelector("#password").value,
+
+        }
+        
+        data.push(obj);
+       
+        if(obj.email==="" || obj.contact==="" || obj.password===""){
+
+            alert("Please fill up the form");
+        }
+        else{
+            localStorage.setItem("data",JSON.stringify(data));
+            alert("You have successfuly signed up");
+        }
+        var dataAcc = JSON.parse(localStorage.getItem("data"));
+        
+        document.querySelector(".btn2").addEventListener("click",log);
+        var acc=[];
+        function log(){
+            var objAcc = {
+            email:document.querySelector("#email").value,
+            contact:document.querySelector("#name").value,
+            password:document.querySelector("#password").value,}
+
+            acc.push(objAcc);
+            localStorage.setItem("logData",JSON.stringify(acc));
+            if(acc.contact===data.contact && acc.email===data.email && acc.password===data.password){
+                alert("You have successfuly logged in");
+            }
+            else{
+                alert("You need to sign up first");
+            }
+            
+
+        }
+
+        }
+    
+   
+</script>
