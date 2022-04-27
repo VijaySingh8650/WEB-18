@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>body{
+        height: 500px;
+        display: flex;
+
+    }
+    #container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+       
+        width: 25%;
+        margin: auto;
+        padding: 10px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        border-radius: 10px;
+    }
+    input{
+        height: 20px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        border: 1px solid grey;
+    }
+    button{
+        cursor: pointer;
+    }</style>
+</head>
+<body>
+    <div id="container">
+        <label for="">Email</label>
+        <input type="email" placeholder="Enter Email" id="email">
+    
+        <label for="">Password</label>
+        <input type="password" placeholder="Enter Password" id="password">
+        <label for="">Have an account</label>
+        <button>Log in</button>
+     
+    </div>
+</body>
+</html>
+<script>
+    document.querySelector("button").addEventListener("click",log);
+    var dataAcc = JSON.parse(localStorage.getItem("data"));
+    var arrLog =  [];
+    function log(){
+        var objLog = {
+            email:email.value,
+            password:password.value,
+
+        }
+        arrLog.push(objLog);
+        localStorage.setItem("logItem",JSON.stringify(arrLog));
+        var logAcc =  JSON.parse(localStorage.getItem("logItem"));
+        if(objLog.email==="" || objLog.password===""){
+            alert("Please fill in the from");
+            
+        }
+        else{
+            var x = false;
+            for(i=0; i<dataAcc.length;i++){
+                for(j=0; j<logAcc.length; j++){
+                    if(logAcc[j].email===dataAcc[i].email && logAcc[j].password===dataAcc[i].password){
+                        x=true;
+                    }
+                }
+            }
+            if(x){
+                alert("Successfuly logged in");
+            }
+            else{
+                alert("You have entered wrong password");
+                
+            }
+            
+        }
+    }
+    
+    
+</script>
