@@ -5,24 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>body{
-        height: 500px;
-        display: flex;
-
-    }
+    <link rel="stylesheet" href="style.css">
+    <style>
     #container{
+        
         display: flex;
+       
         flex-direction: column;
         justify-content: center;
-       
+        height: 80vh;
         width: 25%;
         margin: auto;
         padding: 10px;
-        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
         border-radius: 10px;
     }
     input{
-        height: 20px;
+        height: 30px;
+        padding-left: 10px;
         margin-bottom: 20px;
         border-radius: 10px;
         border: 1px solid grey;
@@ -32,6 +32,15 @@
     }</style>
 </head>
 <body>
+    <div id="flex">
+        <h1><a href="">Reebok</a></h1>
+        <ul>
+            <li><a href="" id="men">Men</a></li>
+            <li><a href="" id="women">Women</a></li>
+            <li><a href="index.html" id="log">Log-in</a></li>
+            <li><a href="signup.html" id="sign">Sign-up</a></li>
+        </ul>
+    </div>
     <div id="container">
         <label for="">Email</label>
         <input type="email" placeholder="Enter Email" id="email">
@@ -72,6 +81,10 @@
             }
             if(x){
                 alert("Successfuly logged in");
+                window.location.href="mens.html";
+                
+                
+
             }
             else{
                 alert("You have entered wrong password");
@@ -80,6 +93,12 @@
             
         }
     }
+    document.querySelector("#men").addEventListener("click",function(){
+            alert("Please sign up or log in");
+        });
+        document.querySelector("#women").addEventListener("click",function(){
+            alert("Please sign up or log in");
+        });
     
     
 </script>

@@ -4,26 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign-In</title>
+    <title>Sign-up</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        body{
-            height: 500px;
-            display: flex;
-
-        }
+        
         #container{
+            
             display: flex;
             flex-direction: column;
             justify-content: center;
-           
+            height: 80vh;
             width: 25%;
             margin: auto;
+            
             padding: 10px;
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
             border-radius: 10px;
         }
         input{
-            height: 20px;
+            height: 30px;
+            padding-left: 10px;
             margin-bottom: 20px;
             border-radius: 10px;
             border: 1px solid grey;
@@ -35,6 +35,15 @@
     </style>
 </head>
 <body>
+    <div id="flex">
+        <h1>Reebok</h1>
+        <ul>
+            <li id="men"><a href="" >Men</a></li>
+            <li id="women"><a href="" >Women</a></li>
+            <li><a href="index.html">Log-in</a></li>
+            <li><a href="signup.html">Sign-up</a></li>
+        </ul>
+    </div>
     <div id="container">
         <label for="">Email</label>
         <input type="email" placeholder="Enter Email" id="email">
@@ -53,7 +62,7 @@
     document.querySelector("button").addEventListener("click",add);
     var data = [];
    
-        document.getElementById("container").append(login);
+        // document.getElementById("container").append(login);
         
     function add(){
         var obj = {
@@ -68,16 +77,23 @@
         if(obj.email==="" || obj.contact==="" || obj.password===""){
 
             alert("Please fill up the form");
+
         }
         else{
             localStorage.setItem("data",JSON.stringify(data));
             alert("You have successfuly signed up");
-            window.location.href="login.html";
-
+            window.location.href="index.html";
+         
         }
         
         
         }
+        document.querySelector("#men").addEventListener("click",function(){
+            alert("Please sign up or log in");
+        });
+        document.querySelector("#women").addEventListener("click",function(){
+            alert("Please sign up or log in");
+        });
     
    
 </script>

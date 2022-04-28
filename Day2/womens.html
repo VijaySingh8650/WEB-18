@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mens</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         *{
             margin: 0;
@@ -20,8 +21,10 @@
             gap: 20px;
             padding: 20px;
         }
-        h1{
+        div+ h1{
             text-align: center;
+            margin-top: 100px;
+           
         }
         p{
             color: grey;
@@ -53,6 +56,15 @@
     </style>
 </head>
 <body>
+  <div id="flex">
+    <h1><a href="">Reebok</a></h1>
+    <ul>
+        <li><a href="mens.html">Men</a></li>
+        <li><a href="womens.html">Women</a></li>
+        <li><a href="index.html" id="log">Log-in</a></li>
+        <li><a href="signup.html" id="sign">Sign-up</a></li>
+    </ul>
+</div>
     <h1>Women's Collection</h1>
 </body>
 </html>
@@ -514,6 +526,12 @@
       strikedoffprice: 1899,
     },
   ];
+  var logOut=document.querySelector("#log");
+  logOut.innerText="Log-Out",
+  logOut.addEventListener("click",function(){
+    window.location.href="login.html";
+  })
+  document.querySelector("#sign").innerText="";
   var div = document.createElement("div");
   div.setAttribute("id","container");
 
