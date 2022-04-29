@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <link rel="stylesheet" href="style.css">
+     <style>
+         *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            padding: 20px;
+        }
+       div+ h1{
+            /* text-align: center; */
+            margin-top: 50px;
+           
+        }
+        p{
+            color: grey;
+        }
+        img{
+            width: 100%;
+            
+        }
+        .box1{
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+        .box{
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; 
+            padding-bottom: 20px;
+        }
+        .box>h5{
+            padding: 0 20px ;
+        }
+        .box>p{
+            padding: 10px 20px ;
+            
+            
+        }
+        .box>button{
+            margin: 0 20px;
+           
+        }
+        div~h1{
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+     </style>
+</head>
+<body>
+    <div id="flex">
+        <h1>Reebok</h1>
+        <ul>
+            <li><a href="mens.html" id="men">Men</a></li>
+            <li><a href="womens.html" id="women">Women</a></li>
+            <li><a href="Cart.html" id="women">Cart</a></li>
+            <li><a href="login.html" id="log">Log-in</a></li>
+            <li><a href="signup.html" id="sign">Sign-up</a></li>
+        </ul>
+    </div> 
+    <h1>Total Prize:- 0</h1>
+    <h1 id="cart">Total Cart Item:- 0</h1>
+    <form action="">
+    <label for="">Have a coupon</label>
+    <input type="text" placeholder="Get a promo" id="input">
+    <input type="submit" id="sub" value="Apply Promo"></form>
+    <div id="container">
+
+    </div>
+</body
+</html>
+<script>
+   
+    var logOut=document.querySelector("#log");
+  logOut.innerText="Log-Out";
+  logOut.addEventListener("click",function(){
+      window.location.href="signin.html";
+  })
+  document.querySelector("#sign").innerText="";
+
+
+
+
+  var cartitem= JSON.parse(localStorage.getItem("cart"));
+  var sum = 0;
+  var cart_item=0;
+  cartitem.map(function(ele,index){
+    
+    var div2 = document.createElement("div");
+  div2.setAttribute("class","box"); 
+    var img = document.createElement("img");
+    img.setAttribute("src",ele.image);
+    var name = document.createElement("h5");
+    name.innerText = ele.name;
+    
+    var price = document.createElement("p");
+    price.innerText = ele.price;
+   
+    var dlt = document.createElement("button");
+    dlt.innerText="Delete";
+    dlt.style.cursor="pointer";
+   var select = document.createElement("select");
+   select.setAttribute("id","select");
+   var option1 = document.createElement("option");
+   var option0 = document.createElement("option");
+   var option2 = document.createElement("option");
+   var option3 = document.createElement("option");
+   var option4 = document.createElement("option");
+   var option5 = document.createElement("option");
+   option0.innerText="Select Quantity";
+      option1.innerText=1;
+   option2.innerText=2;
+   option3.innerText=3;
+   option4.innerText=4;
+   option5.innerText=5;
+   select.append(option0,option1,option2,option3,option4,option5);
+   select.addEventListener("change",function(){
+    sum=sum+(ele.price*select.value);
+    document.querySelector("div+h1").innerText= "Total Prize:- "+sum+" ₹";
+})
+
+
+   
+    document.querySelector("form").addEventListener("submit",fom);
+    
+    
+    var h = document.querySelector("div+h1")
+   h.innerText= "Total Prize:- "+sum+" ₹";
+    dlt.addEventListener("click",function( ){
+        
+             sum -= ele.price;
+             
+             location.reload();
+     
+      div2.innerHTML="";
+      div2.style.boxShadow="none";
+      cartitem.splice(index,1);
+      localStorage.setItem("cart", JSON.stringify(cartitem));
+      if(sum>=0){
+         
+          document.querySelector("div+h1").innerText= "Total Prize:- "+sum+" ₹";
+        }
+        else{
+          document.querySelector("div+h1").innerText= "Total Prize:- "+0+" ₹";
+
+      }
+      document.querySelector("#cart").innerText="Total Cart Item:- "+cartitem.length;
+
+    })
+     
+    document.querySelector("#cart").innerText="Total Cart Item:- "+cartitem.length;
+    div2.append(img,name,price,dlt,select);
+    document.querySelector("#container").append(div2);   
+})
+function fom(){
+        event.preventDefault();
+        var input= document.querySelector("#input").value;
+      if(input==="masai30" && sum>600){
+          sum-=(.3*sum);
+          if(sum>0){
+        input.value="";
+
+            document.querySelector("div+h1").innerText= "Total Prize:- "+sum+" ₹";
+         
+         document.querySelector("#sub").disabled=true;
+         alert("You got a discount");
+          }
+         
+      }
+      else{
+          alert("Wrong promo code");
+      }
+    }
+
+</script>

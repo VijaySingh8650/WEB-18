@@ -61,6 +61,7 @@
     <ul>
         <li><a href="mens.html">Men</a></li>
         <li><a href="womens.html">Women</a></li>
+        <li><a href="Cart.html">Cart</a></li>
         <li><a href="login.html" id="log">Log-in</a></li>
         <li><a href="signup.html" id="sign">Sign-up</a></li>
     </ul>
@@ -554,10 +555,43 @@
     var btn = document.createElement("button");
     btn.innerText="Add to Cart";
     btn.style.cursor="pointer";
+    btn.addEventListener("click",function(){
+      cart(el);
+    })
     div1.append(price,priceCut);
     div2.append(img,name,div1,btn);
     document.querySelector("#container").append(div2);
     
 
   })
+  var array= JSON.parse(localStorage.getItem("cart"))|| [];
+  function cart(el){
+    var image= el.image_url;
+    var name = el.name;
+    var price=el.price;
+    var obj={
+      image:image,
+      name:name,
+      price:price,
+    }
+        array.push(obj);
+        checkOut()
+        localStorage.setItem("cart",JSON.stringify(array));
+        alert("item added in Cart");
+  }
+  function checkOut(){
+   
+   for(i=0;i<array.length;i++){
+      for(j=i+1;j<array.length;j++){
+        if(array[i].name===array[j].name && array[i].image===array[j].image && array[i].price===array[j].price){
+             array.splice(j,1);
+            
+          alert("Item already added");
+        }
+        
+      }
+      
+      
+    };
+}
 </script>
